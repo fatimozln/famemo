@@ -9,7 +9,7 @@ Article
     <h1>Articles List</h1>
     {% for ithems in articles %}
     <h2>
-        <a href="#">{{ithems.title}}</a>
+        <a href="{% url 'articles:slug' slug=ithems.slug %}">{{ithems.title}}</a>
     </h2>
     <p>{{ithems.snippet}}</p>
     <p>{{ithems.date}}</p>
