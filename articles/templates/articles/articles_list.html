@@ -7,6 +7,13 @@
 
 <body>
     <h2>Articles List</h2>
+    {% for ithems in articles %}
+    <h2>
+        <a href="#">{{ithems.title}}</a>
+    </h2>
+    <p>{{ithems.snippet}}</p>
+    <p>{{ithems.date}}</p>
+    {% endfor %}
 </body>
 
 </html>
