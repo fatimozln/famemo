@@ -9,14 +9,16 @@
 </head>
 
 <body>
-    <h2>Articles List</h2>
-    {% for ithems in articles %}
-    <h2>
-        <a href="#">{{ithems.title}}</a>
-    </h2>
-    <p>{{ithems.snippet}}</p>
-    <p>{{ithems.date}}</p>
-    {% endfor %}
+    <div class="container">
+        <h2>Articles List</h2>
+        {% for ithems in articles %}
+        <h2>
+            <a href="#">{{ithems.title}}</a>
+        </h2>
+        <p>{{ithems.snippet}}</p>
+        <p>{{ithems.date}}</p>
+        {% endfor %}
+    </div>
 </body>
 
 </html>
