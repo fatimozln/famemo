@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Article
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Articles List</h1>
+    {% for ithems in articles %}
+    <h2>
+        <a href="{% url 'articles:slug' slug=ithems.slug %}">{{ithems.title}}</a>
+    </h2>
+    <p>{{ithems.snippet}}</p>
+    <p>{{ithems.date}}</p>
+    {% endfor %}
+</div>
+{% endblock %}
