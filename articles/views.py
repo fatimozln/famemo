@@ -20,6 +20,9 @@ def add_post(request):
     if request.method == 'POST':
         form = forms.Addpost(request.POST, request.FILES)
         if form.is_valid():
+            sample = form.save(commit=False)
+            sample.author = request.user
+            sample.save()
             return redirect('articles:list')
     else:
         form = forms.Addpost()
