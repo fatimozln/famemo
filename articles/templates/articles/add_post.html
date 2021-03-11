@@ -5,6 +5,11 @@
     <h1>
         Add your post
     </h1>
+    <form class="site-form" action="{% url 'articles:add' %}" method="POST" enctype="multipart/form-data">
+        {{form}}
+        {% csrf_token %}
+        <input type="submit" name="" value="add">
+    </form>
 </div>
 
 {% endblock %}
