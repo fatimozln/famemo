@@ -22,7 +22,10 @@ def login(request):
         if form.is_valid():
             user = form.get_user()
             login_library(request, user)
-            return redirect('articles:list')
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
+            else:
+                return redirect('articles:list')
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
