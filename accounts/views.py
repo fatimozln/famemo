@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login as login_library
+from django.contrib.auth import logout as logout_library
 
 
 def signup(request):
@@ -25,3 +26,9 @@ def login(request):
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
+
+
+def logout(request):
+    if request.method == 'POST':
+        logout_library(request)
+        return redirect('articles:list')
