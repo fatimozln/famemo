@@ -12,3 +12,7 @@ def articles_details(request, slug):
     # return HttpResponse(slug)
     article = models.Article.objects.get(slug=slug)
     return render(request, 'articles/articles_detail.html', {'article': article})
+
+
+def add_post(request):
+    return render(request, 'articles/add_post.html')
