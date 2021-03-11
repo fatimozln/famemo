@@ -7,7 +7,8 @@ def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            login_library(request, user)
             return redirect('articles:list')
     else:
         form = UserCreationForm()
