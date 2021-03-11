@@ -2,9 +2,12 @@
 
 {% block content %}
 <h1>login</h1>
-<form class="site-form" action="/accounts/login" method="POST">
+<form class="site-form" action="{% url 'accounts:login' %}" method="POST">
     {{form}}
     {% csrf_token %}
+    {% if request.GET.next %}
+    <input type="hidden" name="next" value="{{request.GET.next}}">
+    {% endif %}
     <input type="submit" id="login">
 </form>
 {% endblock %}
