@@ -15,12 +15,24 @@
     <h2><a href="{% url 'articles:list'%}">FAMEMO APP</a></h2>
     <nav>
         <ul>
+            {% if user.is_authenticated %}
             <li>
                 <form class="logout-link" action="{% url 'accounts:logout'%}" method="POST">
                     {% csrf_token %}
                     <button type="submit">logout</button>
                 </form>
             </li>
+            <li>
+                <a href="{% url 'articles:add' %}">new post</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'accounts:login' %}">login</a>
+            </li>
+            <li>
+                <a href="{% url 'accounts:signup' %}">signup</a>
+            </li>
+            {% endif %}
         </ul>
     </nav>
     <div class="wrapper">
