@@ -4,10 +4,19 @@
 
 <div class="articles-details">
     <div class="article">
-        <h2>{{article.title}}</h2>
-        <img src="{{article.image.url}}" alt="" width="350" height="300">
+        <center>
+            <h2>{{article.title}}</h2>
 
+            <img src="{{article.image.url}}" alt="" width="350" height="300">
+        </center>
         <h3>Author = {{article.author}}</h3>
+
+        {% if user in article.likes.all %}
+        <h4> <a href="{% url 'articles:unlike' article.id %}"> unlike</a></h4>
+        {% else %}
+        <h4> <a href="{% url 'articles:like' article.id %}"> like</a></h4>
+        {% endif %}
+
         <p>{{article.body}}</p>
         <p>{{article.date}}</p>
     </div>
