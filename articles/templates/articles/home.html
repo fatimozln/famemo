@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<!-- <h1>Articles List</h1> -->
+
+<div class="row row-cols-3">
+    {% for ithems in articles %}
+    <main>
+        <div class="container">
+            <div class="gallery">
+                <div class="gallery-item" tabindex="0">
+                    <img src="{{ithems.image.url}}" class="gallery-image" alt="" width="350" height="300">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ithems.title}}</h5>
+                        <p class="card-text">{{ithems.snippet}}.</p>
+                        <p class="card-text">Author: {{ithems.author}}</p>
+                        <a href="{% url 'articles:slug' slug=ithems.slug %}" class="btn btn-primary">Go To Article</a>
+                    </div>
+                </div>
+            </div>
+    </main>
+    {% endfor %}
+</div>
+{% endblock %}
