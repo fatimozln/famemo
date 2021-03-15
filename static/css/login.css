@@ -1,0 +1,141 @@
+body{
+    background-color: #FAFAFA;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+}
+
+.row{
+    margin: 0;
+    margin-top: 5%;
+}
+
+
+.login-inner{
+    margin: 0;
+    margin-top: 12%;
+    background-color:  #FFFFFF;
+    margin-left: 8%;
+    width: 80%;
+    height: 70%;
+    border: 1px solid #DBDBDB;
+}
+
+.content{
+    margin-left: 20%;
+    margin-top: 5%;
+    font-family: 'Lobster', cursive;
+    font-size: 280%;
+}
+
+input{
+    height: 7%;
+    width: 70%;
+    background-color: #FAFAFA;
+    border: 1px solid #DBDBDB;
+}
+
+input::placeholder{
+    font-size: 75%;
+}
+
+input:focus{
+    outline: 0;
+    box-shadow: none;
+    border: 1px solid #DBDBDB;
+}
+
+.username{
+    margin-top: 10%;
+    margin-left: 15%;
+}
+
+.password{
+    margin-top: 2%;
+    margin-left: 15%;
+}
+
+
+.login-btn{
+    margin-top: 4%;
+    background-color: #0095F6;
+    color: white;
+    height: 9%;
+    width: 70%;
+    margin-left: 15%;
+}
+.login-btn:hover{
+    background-color: #0095F6;
+    color: white;
+}
+
+.facebook{
+    margin: 0;
+    margin-left: 25%;
+    font-size: 100%;
+    color: #385185;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #385185;
+}
+
+.forgot{
+    margin: 0;
+    margin-left: 32%;
+    color: #385185;
+    font-size: 80%;
+}
+hr{
+    width: 60%;
+}
+
+.signup{
+    margin: 0;
+    margin-top: 5%;
+    margin-left: 8%;
+    background-color: #FFFFFF;
+    border: 1px solid #DBDBDB;
+    width: 80%;
+    height: 12%;
+}
+
+.no-account{
+    margin: 0;
+    margin-top: 5%;
+    margin-left: 23%;
+    font-size: 80%;
+}
+
+.signup-link{
+    font-weight: 600;
+    color: #0095F7;
+}
+.signup-link:hover{
+    font-weight: 600;
+    color: #0095F7;
+}
+
+.footer-text{
+    margin: 0;
+    margin-left: 15%;
+    margin-top: -3%;
+    color: #385185;
+    font-size: 90%;
+    font-weight: 500;
+    cursor: pointer;
+}
+.copyright{
+    margin-left: 8%;
+    color: #8E919C;
+}
+
+@media (max-width: 768px) {
+    .img-container{
+        display: none;
+    }
+}
