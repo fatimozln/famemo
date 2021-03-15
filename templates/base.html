@@ -8,12 +8,14 @@
         {% block title %}
         {% endblock %}
     </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 
 <body>
-    <h2><a href="{% url 'articles:list'%}">FAMEMO APP</a></h2>
-    <nav>
+
+    <!--     <nav>
         <ul>
             {% if user.is_authenticated %}
             <li>
@@ -34,11 +36,54 @@
             </li>
             {% endif %}
         </ul>
+    </nav> -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="">FAMEMO</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                    <li class="navbar-item">
+
+                        <form class="nav-link" action=" {% url 'accounts:logout' %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit">logout</button>
+                        </form>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="nav-link" href="{% url 'articles:add' %}">new post</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="nav-link" href="{% url 'accounts:login' %}">login</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="nav-link" href="{% url 'accounts:signup' %}">signup</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </div>
     </nav>
+
     <div class="wrapper">
         {% block content %}
         {% endblock %}
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
 </body>
+
 
 </html>

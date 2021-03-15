@@ -1,0 +1,92 @@
+{% load static%}
+<h1>Wellcome</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/7f3bd65769.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="/static/css/login.css">
+  <title>FAMEMO</title>
+</head>
+
+
+<body>
+
+
+  <div class="row justify-content-center">
+
+    <div class="img-container col-lg-4 col-md-6">
+
+      <div id="carouselExampleFade" class="carousel slide carousel-fade slide-phone" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/media/638_C9Tzfpx.jpg" class="d-block" height="500" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="/media/default.jpg" class="d-block " height="500" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="/media/ac-image-bU1544540755BY.jpeg" class="d-block " height="500" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="/media/638.jpg" class="d-block " height="500" alt="...">
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <div class="login-box col-lg-4 col-md-6 col-sm-12">
+
+
+      <div class="login-inner">
+        <h1 class="intsa content"> FAMEMO </h1>
+        <form class="site-form" action="{% url 'accounts:login' %}" method="POST">
+          {{form}}
+          {% csrf_token %}
+          {% if request.GET.next %}
+          <input type="hidden" name="next" value="{{request.GET.next}}">
+          {% endif %}
+          <input type="submit" value="login" id="login">
+
+          <!-- <P>Username :</P>
+        <input type="text" class="username rouded" placeholder="   Phone number, username, or email"> <br>
+        <P>Password :</P>
+        <input type="password" class="password rouded" placeholder="  Password"> <br>
+        <br>
+        <a href="{% url 'articles:list' %}" class="btn btn-primary"> Login </a> </br> -->
+          <hr>
+      </div>
+      </form>
+      <div class="signup">
+        <p class="no-account"> Don't have account ? <a href="{% url 'accounts:signup' %}" class="signup-link"> Signup
+          </a> </p>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+
+
+</html>

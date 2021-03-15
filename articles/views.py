@@ -6,7 +6,7 @@ from . import forms
 
 def articles_list(request):
     articles = models.Article.objects.all().order_by('-date')
-    return render(request, 'articles/articles_list.html', {'articles': articles})
+    return render(request, 'articles/home.html', {'articles': articles})
 
 
 def articles_details(request, slug):
