@@ -27,3 +27,23 @@ def add_post(request):
     else:
         form = forms.Addpost()
     return render(request, 'articles/add_post.html', {'form': form})
+
+
+def like(request, postid):
+    post = models.Article.objects.get(id=postid)
+    user = request.user
+    if user in post.likes.all():
+        return HttpResponse("you liked this post")
+    else:
+        post.likes.add(user)
+        return HttpResponse('articles:slug', postid)
+
+
+def unlike(request, postid):
+    post = models.Article.objects.get(id=postid)
+    user = request.user
+    if user in post.likes.all():
+        post.likes.remove(user)
+        return redirect('articles:slug', postid)
+    else:
+        return HttpResponse("you dont liked this post")
