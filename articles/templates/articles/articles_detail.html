@@ -11,12 +11,20 @@
         </center>
         <h3>Author = {{article.author}}</h3>
 
-        {% if user in article.likes.all %}
-        <h4> <a href="{% url 'articles:unlike' article.id %}"> unlike</a></h4>
-        {% else %}
-        <h4> <a href="{% url 'articles:like' article.id %}"> like</a></h4>
-        {% endif %}
-
+        <form action="{% url 'articles:like' article.id %}" method="POST" class="ui form">
+            <input type="hidden" name="post_id" value=" {{article.id}}">
+            {% csrf_token %}
+            {% if user not in article.likes.all %}
+            <button class="ui button positive" type="submit"
+                style=" background-color: #4CAF50; color: white; ">Like</button>
+            <!-- <h4> <a href="{% url 'articles:unlike' article.id %}"> unlike</a></h4> -->
+            {% else %}
+            <button class="ui button nagative" type="submit"
+                style="background-color: #f44336; color: white;">UnLike</button>
+            <!-- <a href="{% url 'articles:like' article.id %}"> like</a></h4> -->
+            {% endif %}
+        </form>
+        <strong>{{ article.likes.all.count}}likes</strong>
         <p>{{article.body}}</p>
         <p>{{article.date}}</p>
     </div>

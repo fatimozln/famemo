@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from . import models
 from django.contrib.auth.decorators import login_required
 from . import forms
+from django.contrib.auth.models import AnonymousUser, AbstractBaseUser
 
 
 def articles_list(request):
@@ -32,18 +33,47 @@ def add_post(request):
 def like(request, postid):
     post = models.Article.objects.get(id=postid)
     user = request.user
-    if user in post.likes.all():
-        return HttpResponse("you liked this post")
+    if user.is_authenticated:
+        if user in post.likes.all():
+            return HttpResponse("you liked this post")
+        else:
+            post.likes.add(user)
+            return HttpResponse('articles:slug', postid)
     else:
-        post.likes.add(user)
-        return HttpResponse('articles:slug', postid)
+        return HttpResponse("you are not allow to liked this post...plz login or signup")
+
+
+""" def like(request):
+    user = request.user
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post_obj = models.Article.objects.get(id=post_id)
+
+        if user in post_obj.likes.all():
+            post_obj.likes.remove(user)
+        else:
+            post_obj.likes.add(user)
+
+        like, created = models.Like.objects.get_or_create(
+            user=user, post_id=post_id)
+
+        if not created:
+            if like.value == 'Like':
+                like.value == 'UnLike'
+            else:
+                like.value = 'Like'
+        like.save()
+        return redirect('articles:list') """
 
 
 def unlike(request, postid):
     post = models.Article.objects.get(id=postid)
     user = request.user
-    if user in post.likes.all():
-        post.likes.remove(user)
-        return redirect('articles:slug', postid)
+    if user.is_authenticated:
+        if user in post.likes.all():
+            post.likes.remove(user)
+            return redirect('articles:slug', postid)
+        else:
+            return HttpResponse("you dont liked this post")
     else:
-        return HttpResponse("you dont liked this post")
+        return HttpResponse("you are not allow to liked this post...plz login or signup")
