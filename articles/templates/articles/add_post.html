@@ -2,11 +2,13 @@
 
 {% block content %}
 <div class="add-post">
-    <h1>
+    <br>
+    <h3>
         Add your post
-    </h1>
+    </h3>
+    <hr>
     <form class="site-form" action="{% url 'articles:add' %}" method="POST" enctype="multipart/form-data">
-        {{form}}
+        {{form.as_p}}
         {% csrf_token %}
         <input type="submit" name="" value="add">
     </form>
