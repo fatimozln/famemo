@@ -9,8 +9,18 @@
 
             <img src="{{article.image.url}}" alt="" width="350" height="300">
         </center>
-        <h3>Author = {{article.author}}</h3>
 
+
+        <h5> Written by :{{article.author}} </h5>
+
+
+        <hr>
+        <div style="background:rgb(240, 236, 237); padding:10px; overflow:auto;">
+            <p>{{article.body}}</p>
+            <p>{{article.date}}</p>
+        </div>
+
+        <hr>
         <form action="{% url 'articles:like' article.id %}" method="POST" class="ui form">
             <input type="hidden" name="post_id" value=" {{article.id}}">
             {% csrf_token %}
@@ -23,11 +33,67 @@
                 style="background-color: #f44336; color: white;">UnLike</button>
             <!-- <a href="{% url 'articles:like' article.id %}"> like</a></h4> -->
             {% endif %}
+            <strong>{{ article.likes.all.count}}likes</strong>
         </form>
-        <strong>{{ article.likes.all.count}}likes</strong>
-        <p>{{article.body}}</p>
-        <p>{{article.date}}</p>
+
+        <!--         <h5>Comments :</h5>
+        {% if not article.comments.all %}
+        no comments yet...<a href="#"><input type="submit" value="add comment"></a>
+        {% else %}
+        {% for comment in article.comments.all %}
+        <strong>
+            {{comment.name}}-
+            {{comment.date}}
+        </strong>
+        <br>
+        {{comment.message}}
+        {% endfor %}
+        {% endif %} -->
+        <hr>
+        <div class="container pb-cmnt-container">
+            <div class="row">
+                <div class="col-md-7 col-md-offset-3">
+                    <div class="panel panel-info">
+                        <div class="panel-body">
+                            <form class="form-inline">
+
+
+                                {% if not article.comments.all %}
+                                no comments yet...
+                                {% else %}
+                                {% for comment in article.comments.all %}
+                                <br>
+                                <br>
+                                <strong>
+                                    {{comment.name}}_
+                                    {{comment.date}}
+                                </strong>
+                                <br>
+                                {{comment.message}}
+                                {% endfor %}
+                                <br>
+
+                                {% endif %}
+
+                            </form>
+                            <br>
+
+                            <a href="{% url 'articles:add_comment' slug=article.slug %}" class="btn btn-primary">add
+                                comment
+                            </a>
+
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
     </div>
+</div>
 </div>
 
 {% endblock %}

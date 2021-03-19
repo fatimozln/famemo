@@ -30,6 +30,7 @@ def add_post(request):
     return render(request, 'articles/add_post.html', {'form': form})
 
 
+@login_required(login_url='/accounts/login')
 def like(request, postid):
     post = models.Article.objects.get(id=postid)
     user = request.user
@@ -38,7 +39,7 @@ def like(request, postid):
             return HttpResponse("you liked this post")
         else:
             post.likes.add(user)
-            return HttpResponse('articles:slug', postid)
+            return HttpResponse('you liked this post', postid)
     else:
         return HttpResponse("you are not allow to liked this post...plz login or signup")
 
@@ -77,3 +78,19 @@ def unlike(request, postid):
             return HttpResponse("you dont liked this post")
     else:
         return HttpResponse("you are not allow to liked this post...plz login or signup")
+
+
+@login_required(login_url='/accounts/login')
+def add_comment(request, slug):
+    post = models.Article.objects.get(slug=slug)
+    if request.method == 'POST':
+        form = forms.Addcomments(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.name = request.user
+            comment.save()
+            return redirect('articles:slug', slug=post.slug)
+    else:
+        form = forms.Addcomments()
+    return render(request, 'articles/add_comment.html', {'form': form})

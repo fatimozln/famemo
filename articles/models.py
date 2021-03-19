@@ -40,3 +40,14 @@ class Like(models.Model):
 
     def __str__(self):
         return str(self.post)
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(
+        Article, related_name='comments', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    message = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s-%s' % (self.post.title, self.name)

@@ -8,5 +8,7 @@ urlpatterns = [
     path('<slug>', views.articles_details, name='slug'),
     path('like/<postid>', views.like, name='like'),
     path('unlike/<postid>', views.unlike, name='unlike'),
+    path('<slug>/comment', views.add_comment, name='add_comment'),
+
 
 ]

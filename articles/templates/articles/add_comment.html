@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="add-comment">
+    <br>
+    <h3>
+        Add your comment
+    </h3>
+    <hr>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <br>
+        <button type="submit">add</button>
+    </form>
+</div>
+{% endblock %}
