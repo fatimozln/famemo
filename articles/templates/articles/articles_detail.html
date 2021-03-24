@@ -5,6 +5,7 @@
 <div class="articles-details">
     <div class="article">
         <center>
+
             <h2>{{article.title}}</h2>
 
             <img src="{{article.image.url}}" alt="" width="350" height="300">
@@ -12,12 +13,15 @@
 
 
         <h5> Written by :{{article.author}} </h5>
-
+        <br>
+        <a href="{% url 'articles:delete' article.slug %}" class="btn btn-secondary">Delete
+        </a>
 
         <hr>
         <div style="background:rgb(240, 236, 237); padding:10px; overflow:auto;">
             <p>{{article.body}}</p>
             <p>{{article.date}}</p>
+
         </div>
 
         <hr>
@@ -35,6 +39,7 @@
             {% endif %}
             <strong>{{ article.likes.all.count}}likes</strong>
         </form>
+
 
         <!--         <h5>Comments :</h5>
         {% if not article.comments.all %}

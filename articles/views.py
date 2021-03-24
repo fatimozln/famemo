@@ -83,6 +83,7 @@ def unlike(request, postid):
 @login_required(login_url='/accounts/login')
 def add_comment(request, slug):
     post = models.Article.objects.get(slug=slug)
+    user = request.user
     if request.method == 'POST':
         form = forms.Addcomments(request.POST)
         if form.is_valid():
@@ -94,3 +95,15 @@ def add_comment(request, slug):
     else:
         form = forms.Addcomments()
     return render(request, 'articles/add_comment.html', {'form': form})
+
+
+@login_required(login_url='/accounts/login')
+def delete_post(request, slug):
+    post = models.Article.objects.get(slug=slug)
+    user = request.user
+    if post.author == request.user:
+        post.delete()
+    else:
+        return HttpResponse("Only the author of this article is allowed to delete this post!!!")
+
+    return redirect('articles:list')

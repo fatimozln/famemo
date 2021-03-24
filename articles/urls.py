@@ -9,6 +9,6 @@ urlpatterns = [
     path('like/<postid>', views.like, name='like'),
     path('unlike/<postid>', views.unlike, name='unlike'),
     path('<slug>/comment', views.add_comment, name='add_comment'),
-
+    path('delete/<slug>', views.delete_post, name='delete'),
 
 ]
