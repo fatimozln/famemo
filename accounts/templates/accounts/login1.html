@@ -1,5 +1,5 @@
 {% load static%}
-<h1>Wellcome</h1>
+<h1>Welcome</h1>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,11 +51,11 @@
 
     <div class="login-box col-lg-4 col-md-6 col-sm-12">
 
-
+      <br>
       <div class="login-inner">
         <h1 class="intsa content"> FAMEMO </h1>
         <form class="site-form" action="{% url 'accounts:login' %}" method="POST">
-          {{form}}
+          {{form.as_p}}
           {% csrf_token %}
           {% if request.GET.next %}
           <input type="hidden" name="next" value="{{request.GET.next}}">
@@ -63,11 +63,11 @@
           <input type="submit" value="login" id="login">
 
           <!-- <P>Username :</P>
-        <input type="text" class="username rouded" placeholder="   Phone number, username, or email"> <br>
-        <P>Password :</P>
-        <input type="password" class="password rouded" placeholder="  Password"> <br>
-        <br>
-        <a href="{% url 'articles:list' %}" class="btn btn-primary"> Login </a> </br> -->
+          <input type="text" class="username rouded" placeholder="   Phone number, username, or email"> <br>
+          <P>Password :</P>
+          <input type="password" class="password rouded" placeholder="  Password"> <br>
+          <br>
+          <a href="{% url 'articles:list' %}" class="btn btn-primary"> Login </a> </br> -->
           <hr>
       </div>
       </form>
