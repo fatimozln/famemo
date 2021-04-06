@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+<center>
+    <h3>
+        {{profile.name}}Profiles
+    </h3>
+</center>
+
+<div class="image"> <img src="{{profile.image.url}}" class="rounded" width="155"> </div>
+<div class="ml-3 w-100">
+    <h4 class="mb-0 mt-0">{{profile.user}}</h4>
+    <span>{{profile.name}}</span>
+    <p>{{profile.bio}}</p>
+
+</div>
+</div>
+{% endblock %}
+<!-- <div class="add-comment">
+    <br>
+    <h3>
+        Your Profile
+    </h3>
+    <hr>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <br>
+
+    </form>
+</div> -->
