@@ -12,7 +12,7 @@
         </center>
 
 
-        <h5> Written by :{{article.author}} </h5>
+        <h5> Written by : <a href="{% url 'profiles:show' user=user.id %}">{{article.author}}</a></h5>
         <br>
         <a href="{% url 'articles:delete' article.slug %}" class="btn btn-secondary">Delete
         </a>
