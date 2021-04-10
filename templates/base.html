@@ -1,4 +1,5 @@
 {% load static%}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -39,39 +40,57 @@
     </nav> -->
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
 
-            <a class="navbar-brand" href=" {% url 'articles:list' %}">FAMEMO</a>
+        {% if user.is_authenticated %}
+        <div style="position:absolute; right:10px;">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    {% if user.is_authenticated %}
-                    <li class="navbar-item">
+            <a class=" navbar-brand">
+                {{user}}
+            </a>
+        </div>
+        {% else %}
+        <div style="position:absolute; right:10px;">
+            <a class=" navbar-brand">
+                None User
+            </a>
+        </div>
+        {% endif %}
+        <a class=" navbar-brand" href=" {% url 'articles:list' %}">
+            FAMEMO
+        </a>
 
-                        <form class="nav-link" action=" {% url 'accounts:logout' %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit">logout</button>
-                        </form>
-                    </li>
-                    <li class="navbar-item">
-                        <a class="nav-link" href="{% url 'articles:add' %}">new post</a>
-                    </li>
-                    {% else %}
-                    <li>
-                        <a class="nav-link" href="{% url 'accounts:login' %}">login</a>
-                    </li>
-                    <li class="navbar-item">
-                        <a class="nav-link" href="{% url 'accounts:signup' %}">signup</a>
-                    </li>
-                    {% endif %}
-                </ul>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+
+                {% if user.is_authenticated %}
+                <li class=" navbar-item">
+
+                    <form class="nav-link" action=" {% url 'accounts:logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">logout</button>
+                    </form>
                 </li>
-                </ul>
-            </div>
+                <li class="navbar-item">
+                    <a class="nav-link" href="{% url 'articles:add' %}">new post</a>
+                </li>
+                {% else %}
+                <li>
+                    <a class="nav-link" href="{% url 'accounts:login' %}">login</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="nav-link" href="{% url 'accounts:signup' %}">signup</a>
+                </li>
+                {% endif %}
+
+            </ul>
+            </li>
+            </ul>
+        </div>
         </div>
     </nav>
 

@@ -9,7 +9,7 @@ class Article(models.Model):
     slug = models.SlugField()
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to='%Y/%m/%d', blank=True, null=True)
+    image = models.ImageField(default='default_post.jpg', upload_to='%Y/%m/%d')
     author = models.ForeignKey(
         User, default=None, on_delete=models.CASCADE, related_name='author')
     likes = models.ManyToManyField(
