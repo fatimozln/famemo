@@ -7,16 +7,19 @@ Profile
 {% block content %}
 <center>
     <h3>
-        {{profile.name}}Profiles
+        {{profile.user}}Profiles
     </h3>
 </center>
-
-<div class="image"> <img src="{{profile.image.url}}" class="rounded" width="155"> </div>
-<div class="ml-3 w-100">
-    <h4 class="mb-0 mt-0">{{profile.user}}</h4>
-    <span>{{profile.name}}</span>
-    <p>{{profile.bio}}</p>
-
+<center>
+    <div class="image"> <img src="{{profile.image.url}}" class="rounded" width="155"> </div>
+    <hr>
+    <div class="ml-3 w-100">
+        <span>
+            <h4>Name :</h4>{{profile.name}}
+        </span>
+        <p>
+        <h5>Bio :</h5> {{profile.bio}}</p>
+</center>
 </div>
 </div>
 {% endblock %}
