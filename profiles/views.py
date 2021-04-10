@@ -2,14 +2,13 @@ from django.shortcuts import render, redirect, HttpResponse
 from . import models
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import AnonymousUser, AbstractBaseUser, User
-from . import forms
 from django.views.generic import DetailView
 # Create your views here.
 
 
 @login_required(login_url='/accounts/login')
-def profile_show(request, user):
-    profile = models.User.objects.get(id=user)
+def profile_show(request, user_id):
+    profile = models.Profile.objects.get(user_id=user_id)
     return render(request, 'profiles/profile_page.html', {'profile': profile})
 
 
