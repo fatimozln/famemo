@@ -13,27 +13,39 @@ def profile_show(request, user_id):
 
 
 """ @login_required(login_url='/accounts/login')
-def profile_show(request, user):
-    profile = models.Profile.objects.get(id=user)
-    try:
-        return render(request, 'templates/articles_detail.html', {'profile': profile})
-    except profile.DoesNotExist:
-        raise HttpResponse("No MyModel matches the given query.")
+def delete_user(request, user_id):
+    u = models.Profile.objects.get(user_id=user_id)
+    u.delete()
+    if u.deleted():
+        return HttpResponse("The user is deleted")
+    else:
+        return HttpResponse("The user not found")
  """
 
-""" class Profile(DetailView):
-    models = models.Profile
-    template_name = "profile/profile_page.html"
- """
 
 """ @login_required(login_url='/accounts/login')
-def profile_show(request):
-    profile = models.Profile.objects.all()
-    user = request.user
-    if request.method == 'POST':
-        form = forms.Showprofile(request.POST)
-        if profile.user == request.user:
-            if form.is_valid():
-                return redirect('profile:show')
-        form = forms.Showprofile()
-    return render(request, 'profile/profile_page.html', {'form': form}) """
+def delete_user(request, username):
+    user = models.Profile.objects.get(username=username)
+    user.delete()
+    return redirect('accounts:signup')
+    return render(request, 'profiles/profile_page.html', {'user': user})
+    return HttpResponse(request, "Deleted") """
+
+
+""" @login_required(login_url='/accounts/login')
+def delete_user(request, user_id):
+    profile = models.User.objects.get(user_id=user_id)
+    profile.delete()
+    return redirect('accounts:signup') """
+
+
+def delete_user(request, username):
+    try:
+        u = models.User.objects.get(username=username)
+        if u.username == "superuser":
+            return HttpResponse("The user is Admin becuse can not delete")
+        else:
+            u.delete()
+            return redirect('accounts:login')
+    except:
+        return HttpResponse(request, "The user not found")
