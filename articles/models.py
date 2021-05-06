@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from accounts.models import MyUser
 
 # Create your models here.
 
@@ -11,9 +11,9 @@ class Article(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(default='default_post.jpg', upload_to='%Y/%m/%d')
     author = models.ForeignKey(
-        User, default=None, on_delete=models.CASCADE, related_name='author')
+        MyUser, default=None, on_delete=models.CASCADE, related_name='author')
     likes = models.ManyToManyField(
-        User, related_name='bloglikes', blank=True, default=None)
+        MyUser, related_name='bloglikes', blank=True, default=None)
 
     def __str__(self):
         return self.title
@@ -33,7 +33,7 @@ LIKE_CHOICES = [
 
 
 class Like(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     post = models.ForeignKey(Article, on_delete=models.CASCADE)
     value = models.CharField(choices=LIKE_CHOICES,
                              default='Like', max_length=10)
