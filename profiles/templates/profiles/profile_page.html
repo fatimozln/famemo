@@ -17,6 +17,11 @@ Profile
         <span>
             <h4>Name :</h4>{{profile.name}}
         </span>
+        <span>
+            <p>
+            <h4>Status :</h4>{{profile.user.status}}</p>
+
+        </span>
 
 
         <p>
@@ -25,6 +30,17 @@ Profile
         <a href="{% url 'profiles:delete' username=user.username %}" class="btn btn-secondary"
             style="background-color: #f44336; color: white;">Delete Account
         </a>
+        {% endif %}
+
+        <br>
+        <br>
+        {% if profile.user == request.user %}
+        {% if profile.status == "active" %}
+
+        <a href="{% url 'profiles:deactive' %}" class="btn btn-secondary"
+            style="background-color: #f44336; color: white;">Deactive Account
+        </a>
+        {% endif %}
         {% endif %}
 </center>
 </div>

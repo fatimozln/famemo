@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.contrib.auth import logout as logout_library
 from . import models
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import AnonymousUser, AbstractBaseUser, User
+from django.contrib.auth.models import AnonymousUser, AbstractBaseUser
 from django.views.generic import DetailView
+from accounts.models import MyUser
+
 # Create your views here.
 
 
@@ -41,7 +44,7 @@ def delete_user(request, user_id):
 
 def delete_user(request, username):
     try:
-        u = models.User.objects.get(username=username)
+        u = models.MyUser.objects.get(username=username)
         if u.username == "superuser":
             return HttpResponse("The user is Admin becuse can not delete")
         else:
@@ -49,3 +52,17 @@ def delete_user(request, username):
             return redirect('accounts:login')
     except:
         return HttpResponse(request, "The user not found")
+
+
+@login_required
+def deactive_user(request):
+    user = request.user
+    if user.is_superuser:
+        return HttpResponse("The user is Admin becuse can not deactive")
+    if user.status == "active":
+        user.status = "deactive"
+        user.save()
+        logout_library(request)
+        return HttpResponse("The user is deactive", id)
+    else:
+        pass
